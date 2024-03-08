@@ -41,28 +41,4 @@ describe('ToastComponent', () => {
     await user.click(button);
     expect(submit).toHaveBeenCalledTimes(1)
   })
-
-  // it('shouldn submit with valid payload', async () => {
-  //   const submit = jest.fn();
-  //   const { user } = setup(<LoginForm submit={submit} />);
-  //   const button = screen.getByTestId('button');
-  //   const email = screen.getByTestId('email');
-  //   const password = screen.getByTestId('password');
-
-  //   await user.type(email, 'anson');
-  //   // @ts-ignore
-  //   expect(email.value).toBe('anson')
-
-  //   await user.type(password, 'password');
-  //   // @ts-ignore
-  //   expect(password.value).toBe('password')
-
-  //   // Form submition
-  //   await user.click(button);
-  //   expect(submit).toHaveBeenCalledTimes(1)
-  //   expect(submit).toHaveBeenCalledWith({
-  //     email: "anson",
-  //     password: "password"
-  //   });
-  // })
 });
