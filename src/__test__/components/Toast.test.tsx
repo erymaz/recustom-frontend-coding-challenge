@@ -1,6 +1,6 @@
 import { describe, expect, it, vitest } from 'vitest'
 import { render, screen } from '@testing-library/react';
-import { EToastType, Toast }  from "../../modules/content-exploration/components/Toast/Toast";
+import { EToastType, Toast }  from "../../stories/Toast";
 import userEvent from '@testing-library/user-event';
 
 function setup(jsx: JSX.Element) {

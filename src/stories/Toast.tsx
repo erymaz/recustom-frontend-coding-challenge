@@ -1,7 +1,7 @@
 "use client";
 import { Box, Snackbar } from "@mui/material";
-import { CheckCircle, WarningRounded, Check, Alarm, Close } from "@mui/icons-material";
-import { Button } from "../../../../stories/Button";
+import { CheckCircle, WarningRounded, Check, NotificationsNoneOutlined, Close } from "@mui/icons-material";
+import { Button } from "./Button";
 import './toast.css';
 
 export enum EToastType {
@@ -11,10 +11,16 @@ export enum EToastType {
   DANGER_WITH_ACTION = 'DANGER_WITH_ACTION',
 };
 
+export interface ToastPosition {
+  vertical: "bottom" | "top";
+  horizontal: "left" | "center" | "right";
+}
+
 type ToastProps = {
   open: boolean;
   type: EToastType;
   message: string;
+  position?: ToastPosition;
   actionText?: string;
   onAction?: () => void;
   onClose?: () => void;
@@ -22,18 +28,23 @@ type ToastProps = {
 
 export const Toast = ({
   open,
-  type = EToastType.SUCCESS,
+  type,
   message,
+  position = {
+    vertical: 'top',
+    horizontal: 'right',
+  },
   actionText,
   onAction,
   onClose
 }: ToastProps) => {
-  const typeKey = type.includes('SUCCESS')? 'success' : 'danger'
+  const { vertical, horizontal } = position;
 
+  const typeKey = type.includes('SUCCESS')? 'success' : 'danger'
   const hasAction = type.includes('ACTION');
 
   return (
-    <Snackbar open={open} autoHideDuration={6000} onClose={onClose}>
+    <Snackbar open={open} autoHideDuration={6000} onClose={onClose} anchorOrigin={{ vertical, horizontal }}>
       <div
         className={['toast-container', `toast-${typeKey}-border-color`].join(' ')}
       >
@@ -54,7 +65,7 @@ export const Toast = ({
               <div className="toast-content--message">
                 { message }
               </div>
-              <Box sx={{ width: 100, color: '#FFF' }}>
+              <div className="toast-action--button">
                 <Button
                   primary
                   backgroundColor={ typeKey === 'success'? '#00AC80' : '#FF6464' }
@@ -62,7 +73,7 @@ export const Toast = ({
                   label={actionText || "Take action"}
                   onClick={onAction}
                 />
-              </Box>
+              </div>
             </>
           }
           { !hasAction &&
@@ -73,7 +84,7 @@ export const Toast = ({
               >
                 <div className={`toast-${typeKey}--icon`}>
                   {typeKey === 'success' && <Check sx={{ width: 30}} />}
-                  {typeKey === 'danger' && <Alarm sx={{ width: 30}} />}
+                  {typeKey === 'danger' && <NotificationsNoneOutlined  sx={{ width: 30}} />}
                 </div>
                 <span>{ message }</span>
               </Box>
