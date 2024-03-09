@@ -11,7 +11,7 @@ export enum EToastType {
   DANGER_WITH_ACTION = 'DANGER_WITH_ACTION',
 };
 
-export interface ToastPosition {
+interface ToastPosition {
   vertical: "bottom" | "top";
   horizontal: "left" | "center" | "right";
 }

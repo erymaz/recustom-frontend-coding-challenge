@@ -15,15 +15,31 @@ describe('ToastComponent', () => {
     const message = 'Toast component is rendered Successfully';
     setup(<Toast open={true} type={EToastType.SUCCESS} message={message} />);
     expect(screen.getByText(message)).toBeInTheDocument();
-  })
+  });
 
-  it('class name validation', async () => {
+  it('should render with success classname', async () => {
     const message = 'Toast component is rendered Successfully';
     setup(<Toast open={true} type={EToastType.SUCCESS} message={message} />);
 
     const content = screen.getByTestId('type-content');
     expect(content).toHaveClass('toast-success--content');
-  })
+  });
+
+  it('should render with danger classname', async () => {
+    const message = 'Toast component is rendered Successfully';
+    setup(<Toast open={true} type={EToastType.DANGER} message={message} />);
+
+    const content = screen.getByTestId('type-content');
+    expect(content).toHaveClass('toast-danger--content');
+  });
+
+  it('should render with action button', async () => {
+    const message = 'Toast component is rendered Successfully';
+    setup(<Toast open={true} type={EToastType.SUCCESS_WITH_ACTION} message={message} />);
+
+    const button = screen.getByTestId('button');
+    expect(button).toBeInTheDocument();
+  });
 
   it('should submit action event', async () => {
     const submit = vitest.fn();
@@ -31,8 +47,8 @@ describe('ToastComponent', () => {
     const { user } = setup(<Toast open={true} type={EToastType.SUCCESS_WITH_ACTION} message={message} onAction={submit} />);
     const button = screen.getByTestId('button');
     await user.click(button);
-    expect(submit).toHaveBeenCalledTimes(1)
-  })
+    expect(submit).toHaveBeenCalledTimes(1);
+  });
 
   it('should submit close event', async () => {
     const submit = vitest.fn();
@@ -40,6 +56,6 @@ describe('ToastComponent', () => {
     const { user } = setup(<Toast open={true} type={EToastType.SUCCESS_WITH_ACTION} message={message} onClose={submit} />);
     const button = screen.getByTestId('close-button');
     await user.click(button);
-    expect(submit).toHaveBeenCalledTimes(1)
-  })
+    expect(submit).toHaveBeenCalledTimes(1);
+  });
 });
