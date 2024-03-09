@@ -1,3 +1,4 @@
+import { describe, expect, it, vitest } from 'vitest'
 import { render, screen } from '@testing-library/react';
 import { EToastType, Toast }  from "../../modules/content-exploration/components/Toast/Toast";
 import userEvent from '@testing-library/user-event';
@@ -25,7 +26,7 @@ describe('ToastComponent', () => {
   })
 
   it('should submit action event', async () => {
-    const submit = jest.fn();
+    const submit = vitest.fn();
     const message = 'Toast component is rendered Successfully';
     const { user } = setup(<Toast open={true} type={EToastType.SUCCESS_WITH_ACTION} message={message} onAction={submit} />);
     const button = screen.getByTestId('button');
@@ -34,7 +35,7 @@ describe('ToastComponent', () => {
   })
 
   it('should submit close event', async () => {
-    const submit = jest.fn();
+    const submit = vitest.fn();
     const message = 'Toast component is rendered Successfully';
     const { user } = setup(<Toast open={true} type={EToastType.SUCCESS_WITH_ACTION} message={message} onClose={submit} />);
     const button = screen.getByTestId('close-button');
