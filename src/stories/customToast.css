@@ -1,0 +1,45 @@
+.custom-toast-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0px 0px 1px 2px #f3f4f6;
+  border-radius: 8px;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #FFF;
+  padding: 16px;
+  gap: 20px;
+}
+.custom-toast--content {
+  display: flex;
+  gap: 12px;
+}
+.custom-toast--avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #00AC80;
+  border-radius: 50%;
+  color: #00AC80;
+}
+.custom-toast--text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.custom-toast--title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111928;
+  margin-top: 2px;
+}
+.custom-toast--message {
+  font-weight: 400;
+  font-size: 14px;
+  color: #6B7280;
+}
+.custom-toast--action {
+  width: 100px;
+}
